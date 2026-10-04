@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>ShortsForge AI — Internal Web Studio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            forgeBg: '#090D16',
+            forgeSurface: '#111827',
+            forgeSurfaceVariant: '#1E293B',
+            forgePrimary: '#818CF8',
+            forgeSecondary: '#FBBF24',
+            forgeTertiary: '#38BDF8',
+            forgeSuccess: '#10B981',
+            forgeWarning: '#F59E0B',
+            forgeError: '#EF4444',
+            forgeBorder: '#334155',
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #090D16;
+      color: #F8FAFC;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 4px;
+    }
+    .neon-glow {
+      box-shadow: 0 0 20px rgba(129, 140, 248, 0.25);
+    }
+    .gold-glow {
+      box-shadow: 0 0 20px rgba(251, 191, 36, 0.25);
+    }
+  </style>
+</head>
+<body class="bg-forgeBg text-slate-100 min-h-screen flex flex-col">
+
+  <!-- Top Navigation Header -->
+  <header class="sticky top-0 z-50 bg-forgeBg/95 backdrop-blur border-b border-forgeBorder/50 px-4 py-3 flex items-center justify-between">
+    <div class="flex items-center space-x-3">
+      <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-500 to-amber-400 flex items-center justify-center shadow-lg">
+        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+      </div>
+      <div>
+        <div class="flex items-center space-x-2">
+          <h1 class="text-base font-extrabold tracking-tight text-white">ShortsForge AI</h1>
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-400/20 text-amber-300 border border-amber-400/30">النسخة الداخلية v2.0</span>
+        </div>
+        <p class="text-[11px] text-slate-400">Integrated Web Studio & AI Pipeline</p>
+      </div>
+    </div>
+
+    <!-- Screen Switcher Tabs -->
+    <div class="flex items-center space-x-1 bg-forgeSurface p-1 rounded-xl border border-forgeBorder/60 overflow-x-auto text-xs">
+      <button onclick="switchTab('dashboard')" id="btn-dashboard" class="tab-btn px-3 py-1.5 rounded-lg font-semibold bg-indigo-600 text-white transition">Dashboard</button>
+      <button onclick="switchTab('new-project')" id="btn-new-project" class="tab-btn px-3 py-1.5 rounded-lg font-medium text-slate-400 hover:text-white transition">New Forge</button>
+      <button onclick="switchTab('review')" id="btn-review" class="tab-btn px-3 py-1.5 rounded-lg font-medium text-slate-400 hover:text-white transition">Clip Studio</button>
+      <button onclick="switchTab('jobs')" id="btn-jobs" class="tab-btn px-3 py-1.5 rounded-lg font-medium text-slate-400 hover:text-white transition">Job Pipeline</button>
+      <button onclick="switchTab('chat')" id="btn-chat" class="tab-btn px-3 py-1.5 rounded-lg font-medium text-slate-400 hover:text-white transition">AI Copilot</button>
+      <button onclick="switchTab('exports')" id="btn-exports" class="tab-btn px-3 py-1.5 rounded-lg font-medium text-slate-400 hover:text-white transition">Exports</button>
+      <button onclick="switchTab('settings')" id="btn-settings" class="tab-btn px-3 py-1.5 rounded-lg font-medium text-slate-400 hover:text-white transition">Settings</button>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main class="flex-1 max-w-6xl w-full mx-auto p-4 sm:p-6 space-y-6">
+
+    <!-- 1. DASHBOARD SCREEN -->
+    <section id="screen-dashboard" class="space-y-6">
+      <!-- Hero Banner -->
+      <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-forgeSurface to-slate-900 border border-forgeBorder p-6 sm:p-8">
+        <div class="absolute -right-10 -top-10 w-64 h-64 bg-indigo-600/10 rounded-full blur-3xl"></div>
+        <div class="relative z-10 space-y-3 max-w-2xl">
+          <div class="inline-flex items-center space-x-2 px-2.5 py-1 rounded-md bg-amber-400/10 border border-amber-400/30 text-amber-300 text-xs font-semibold">
+            <span>⚡ GEMINI 3.1 PRO VIDEO PIPELINE</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Turn Long-Form Videos into Viral 9:16 Shorts</h2>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Extract high-retention segments using Gemini Pro, apply automated smart subject-aware vertical framing, burn styled karaoke subtitles, and export production-ready short clips.
+          </p>
+          <div class="pt-2 flex flex-wrap gap-3">
+            <button onclick="switchTab('new-project')" class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 font-bold text-white text-sm shadow-lg shadow-indigo-600/30 transition flex items-center space-x-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+              <span>Forge New Project</span>
+            </button>
+            <button onclick="switchTab('chat')" class="px-5 py-2.5 rounded-xl bg-forgeSurfaceVariant hover:bg-slate-700 font-semibold text-slate-200 text-sm border border-forgeBorder transition flex items-center space-x-2">
+              <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
+              <span>AI Director Copilot</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Metrics -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        <div class="bg-forgeSurface border border-forgeBorder rounded-xl p-4">
+          <p class="text-xs text-slate-400">Total Projects</p>
+          <p id="stat-projects" class="text-2xl font-black text-white mt-1">4</p>
+        </div>
+        <div class="bg-forgeSurface border border-forgeBorder rounded-xl p-4">
+          <p class="text-xs text-slate-400">Ready Clips</p>
+          <p id="stat-clips" class="text-2xl font-black text-amber-400 mt-1">12</p>
+        </div>
+        <div class="bg-forgeSurface border border-forgeBorder rounded-xl p-4">
+          <p class="text-xs text-slate-400">Rendered Shorts</p>
+          <p id="stat-exports" class="text-2xl font-black text-emerald-400 mt-1">7</p>
+        </div>
+        <div class="bg-forgeSurface border border-forgeBorder rounded-xl p-4">
+          <p class="text-xs text-slate-400">Worker Status</p>
+          <p class="text-sm font-bold text-indigo-400 mt-2 flex items-center space-x-1.5">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>BullMQ Active</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Recent Projects -->
+      <div class="space-y-3">
+        <div class="flex items-center justify-between">
+          <h3 class="text-lg font-bold text-white">Recent Video Projects</h3>
+          <span class="text-xs text-slate-400">Showing active queue</span>
+        </div>
+        <div id="projects-list" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. NEW PROJECT SCREEN -->
+    <section id="screen-new-project" class="hidden space-y-6">
+      <div class="bg-forgeSurface border border-forgeBorder rounded-2xl p-6 space-y-6">
+        <div>
+          <h2 class="text-xl font-bold text-white">Forge New Short Video</h2>
+          <p class="text-sm text-slate-400">Paste an authorized video source or select from pre-licensed media.</p>
+        </div>
+
+        <!-- 1. YouTube Reference URL -->
+        <div class="space-y-2">
+          <label class="block text-xs font-semibold text-slate-300">1. YouTube Reference URL (Public Metadata)</label>
+          <div class="flex space-x-2">
+            <input type="text" id="yt-url-input" placeholder="https://www.youtube.com/watch?v=..." class="flex-1 bg-forgeBg border border-forgeBorder rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500">
+            <button onclick="fetchYtMeta()" class="px-4 py-2.5 bg-forgeSurfaceVariant hover:bg-slate-700 text-slate-200 text-sm font-semibold rounded-xl border border-forgeBorder">Validate</button>
+          </div>
+          <div id="yt-preview-card" class="hidden p-3 bg-forgeSurfaceVariant rounded-xl border border-indigo-500/30 flex items-center space-x-3">
+            <img id="yt-thumb" src="" class="w-20 h-14 object-cover rounded-lg">
+            <div class="flex-1 min-w-0">
+              <p id="yt-title" class="text-sm font-bold text-white truncate"></p>
+              <p id="yt-author" class="text-xs text-amber-400"></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Legal Policy Notice -->
+        <div class="p-4 bg-amber-500/10 border border-amber-500/30 rounded-xl space-y-1">
+          <div class="flex items-center space-x-2 text-amber-300 font-bold text-xs">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+            <span>Authorized-Use Policy</span>
+          </div>
+          <p class="text-xs text-slate-400">
+            A YouTube URL alone is never used to circumvent DRM or scrape protected streams. To render output shorts, attach an authorized source video file you own or choose a verified licensed sample below.
+          </p>
+        </div>
+
+        <!-- 3. Source Selection -->
+        <div class="space-y-3">
+          <label class="block text-xs font-semibold text-slate-300">2. Select Authorized Media Source</label>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div onclick="selectSampleSource(0)" id="source-opt-0" class="cursor-pointer p-3.5 rounded-xl border border-indigo-500 bg-indigo-600/15 space-y-1 transition">
+              <p class="text-xs font-bold text-white">AI Keynote Talk</p>
+              <p class="text-[11px] text-slate-400">CC-BY 4.0 Verified License</p>
+            </div>
+            <div onclick="selectSampleSource(1)" id="source-opt-1" class="cursor-pointer p-3.5 rounded-xl border border-forgeBorder bg-forgeBg space-y-1 transition">
+              <p class="text-xs font-bold text-white">Founder Podcast</p>
+              <p class="text-[11px] text-slate-400">Commercial Rights Granted</p>
+            </div>
+            <div onclick="selectSampleSource(2)" id="source-opt-2" class="cursor-pointer p-3.5 rounded-xl border border-forgeBorder bg-forgeBg space-y-1 transition">
+              <p class="text-xs font-bold text-white">Esports Highlight</p>
+              <p class="text-[11px] text-slate-400">Broadcaster Royalty-Free</p>
+            </div>
+          </div>
+          <label class="flex items-center space-x-2 pt-2 cursor-pointer">
+            <input type="checkbox" id="auth-check" checked class="w-4 h-4 rounded text-indigo-600 focus:ring-0 bg-forgeBg border-forgeBorder">
+            <span class="text-xs text-slate-300">I certify that I hold copyright ownership or authorization to process this media.</span>
+          </label>
+        </div>
+
+        <!-- 4. Formatting Options -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+          <div class="space-y-1.5">
+            <label class="text-xs font-semibold text-slate-300">Target Duration</label>
+            <select id="clip-dur" class="w-full bg-forgeBg border border-forgeBorder rounded-xl px-3 py-2 text-sm text-white">
+              <option value="30">30 Seconds (Recommended)</option>
+              <option value="15">15 Seconds (Ultra-Fast Hook)</option>
+              <option value="45">45 Seconds (Deep Dive)</option>
+              <option value="60">60 Seconds (Full Story)</option>
+            </select>
+          </div>
+          <div class="space-y-1.5">
+            <label class="text-xs font-semibold text-slate-300">Subtitle Style</label>
+            <select id="sub-style" class="w-full bg-forgeBg border border-forgeBorder rounded-xl px-3 py-2 text-sm text-white">
+              <option value="neon_karaoke">Neon Karaoke (Yellow/Purple)</option>
+              <option value="bold_boxed">Bold Boxed (White on Dark Box)</option>
+              <option value="cinematic_outline">Cinematic Modern Outline</option>
+              <option value="arabic_rtl">Arabic RTL Direction</option>
+            </select>
+          </div>
+        </div>
+
+        <button onclick="startForgeAnalysis()" class="w-full py-3.5 rounded-xl bg-amber-400 hover:bg-amber-300 font-bold text-slate-900 text-sm shadow-lg shadow-amber-400/20 transition flex items-center justify-center space-x-2">
+          <svg class="w-5 h-5 text-slate-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          <span>Start Gemini Pro Highlight Detection</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- 3. CLIP STUDIO & REVIEW SCREEN -->
+    <section id="screen-review" class="hidden space-y-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <!-- Vertical 9:16 Video Player Preview (Left) -->
+        <div class="lg:col-span-5 flex flex-col items-center">
+          <div class="relative w-64 h-[440px] rounded-3xl bg-black border-2 border-indigo-500/50 shadow-2xl overflow-hidden flex flex-col justify-between p-4">
+            <!-- Top Controls Overlay -->
+            <div class="flex justify-between items-center z-10">
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-black/60 text-amber-300">9:16 HD 1080x1920</span>
+              <span id="preview-crop-mode" class="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300">● Smart Face Tracking</span>
+            </div>
+
+            <!-- Animated Simulated Canvas -->
+            <div class="absolute inset-0 bg-gradient-to-b from-indigo-950 via-slate-900 to-indigo-950 flex items-center justify-center">
+              <div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur flex items-center justify-center cursor-pointer hover:scale-105 transition">
+                <svg class="w-6 h-6 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              </div>
+            </div>
+
+            <!-- Live Animated Subtitle Overlay -->
+            <div class="z-10 text-center mb-10 px-2">
+              <div id="preview-subtitle-box" class="bg-black/70 rounded-lg p-2 text-xs font-black tracking-wide text-amber-300 uppercase shadow-lg">
+                IF YOU ARE STILL EDITING MANUALLY, YOU ARE WASTING HOURS!
+              </div>
+            </div>
+
+            <!-- Safe Overlay Guideline Marker -->
+            <div class="z-10 text-center">
+              <span class="text-[9px] text-white/40">Safe Margins OK (TikTok/Shorts Overlays)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Controls & Polish Editor (Right) -->
+        <div class="lg:col-span-7 bg-forgeSurface border border-forgeBorder rounded-2xl p-6 space-y-5">
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-1 rounded-md bg-amber-400/20 text-amber-300 font-bold text-xs">Viral Score: 94/100</span>
+            <span class="text-xs text-slate-400">Duration: 30.0s (00:15 - 00:45)</span>
+          </div>
+
+          <div class="space-y-1.5">
+            <div class="flex items-center justify-between">
+              <label class="text-xs font-semibold text-slate-300">Short Title</label>
+              <button onclick="aiRewriteHook()" class="text-xs text-amber-400 font-bold hover:underline flex items-center space-x-1">
+                <span>⚡ AI Rewrite Hook</span>
+              </button>
+            </div>
+            <input type="text" id="clip-title-input" value="🔥 The Secret AI Hack Nobody Tells You" class="w-full bg-forgeBg border border-forgeBorder rounded-xl px-4 py-2.5 text-sm text-white font-medium focus:outline-none focus:border-indigo-500">
+          </div>
+
+          <div class="space-y-1.5">
+            <label class="text-xs font-semibold text-slate-300">Spoken Hook (First 3 Seconds)</label>
+            <div class="p-3 bg-forgeBg rounded-xl border border-forgeBorder text-xs text-slate-300 italic">
+              "Stop doing this manually right now before you lose more views..."
+            </div>
+          </div>
+
+          <div class="space-y-1.5">
+            <label class="text-xs font-semibold text-slate-300">Editable Transcript (Burn-in Source)</label>
+            <textarea id="clip-transcript-input" rows="3" class="w-full bg-forgeBg border border-forgeBorder rounded-xl p-3 text-xs text-white focus:outline-none focus:border-indigo-500">If you are still editing videos manually, you are wasting 5 hours a day. Here is how autonomous pipelines re-frame video into 9:16 automatically.</textarea>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3 pt-2">
+            <button onclick="toggleCropMode()" id="btn-toggle-crop" class="px-4 py-2.5 rounded-xl border border-forgeBorder bg-forgeBg text-xs font-semibold text-slate-200 hover:border-indigo-500 transition">
+              Framing: Smart Face Track
+            </button>
+            <button onclick="queueRender()" class="px-4 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-900 text-xs font-bold shadow-lg transition flex items-center justify-center space-x-1.5">
+              <svg class="w-4 h-4 text-slate-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+              <span>Render 9:16 Video</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. JOB PIPELINE SCREEN -->
+    <section id="screen-jobs" class="hidden space-y-6">
+      <div class="bg-forgeSurface border border-forgeBorder rounded-2xl p-6 space-y-5">
+        <div class="flex items-center justify-between">
+          <div>
+            <h2 class="text-xl font-bold text-white">Active Background Job Pipeline</h2>
+            <p class="text-xs text-slate-400">Managed via BullMQ Queue and FFmpeg Container Worker</p>
+          </div>
+          <span id="job-badge" class="px-3 py-1 rounded-full text-xs font-bold bg-amber-400/20 text-amber-300">Rendering 85%</span>
+        </div>
+
+        <div class="space-y-2">
+          <div class="flex justify-between text-xs text-slate-400">
+            <span>Overall Progress</span>
+            <span id="job-percent">85%</span>
+          </div>
+          <div class="w-full bg-forgeBg h-2.5 rounded-full overflow-hidden">
+            <div id="job-bar" class="bg-gradient-to-r from-indigo-500 to-amber-400 h-full rounded-full transition-all duration-500" style="width: 85%;"></div>
+          </div>
+        </div>
+
+        <!-- Terminal Logs -->
+        <div class="space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono text-slate-400">CONTAINER LOGS (STDOUT / STDERR)</span>
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+          </div>
+          <pre id="job-logs" class="bg-black/90 border border-forgeBorder rounded-xl p-4 text-[11px] font-mono text-cyan-300 overflow-x-auto h-52 custom-scrollbar leading-relaxed">
+[Job #941] Initialized media container check: 1080p source verified
+[Gemini-3.1-Pro] Extracting retention moments across 480 seconds...
+[Subtitles] Generated 8 Advanced SubStation Alpha (.ass) cue events with safe margins
+[FFmpeg] Building argument array: scale=-1:1920,crop=1080:1920
+[FFmpeg] Encoding H.264 / AAC at 30fps ...
+[Export] MP4 container created: short_clip_941.mp4 (14.2 MB)
+[Worker] Job completed successfully! Ready for download.
+          </pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. AI COPILOT CHAT -->
+    <section id="screen-chat" class="hidden space-y-4">
+      <div class="bg-forgeSurface border border-forgeBorder rounded-2xl p-5 flex flex-col h-[520px]">
+        <div class="pb-3 border-b border-forgeBorder/60 flex items-center justify-between">
+          <div class="flex items-center space-x-2.5">
+            <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-black text-white text-xs">AI</div>
+            <div>
+              <p class="text-sm font-bold text-white">ShortsForge Creative Director</p>
+              <p class="text-[11px] text-amber-400">Powered by Gemini 3.5 Flash</p>
+            </div>
+          </div>
+          <button onclick="clearChatMessages()" class="text-xs text-slate-400 hover:text-white">Clear</button>
+        </div>
+
+        <div id="chat-messages" class="flex-1 overflow-y-auto custom-scrollbar p-3 space-y-3">
+          <div class="flex justify-start">
+            <div class="max-w-md bg-forgeSurfaceVariant border border-forgeBorder/50 rounded-2xl p-3 text-xs text-slate-200 leading-relaxed">
+              Hello! I am your ShortsForge Creative Director. Ask me for viral hooks, retention curve analysis, caption animations, or B-roll placement for your vertical shorts!
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-3 border-t border-forgeBorder/60 flex space-x-2">
+          <input type="text" id="chat-input" onkeydown="if(event.key==='Enter') sendChat()" placeholder="Ask about hooks, retention pacing, or B-roll..." class="flex-1 bg-forgeBg border border-forgeBorder rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-indigo-500">
+          <button onclick="sendChat()" class="px-4 py-2.5 bg-indigo-600 hover:bg-indigo-500 rounded-xl text-xs font-bold text-white transition">Send</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. EXPORT LIBRARY -->
+    <section id="screen-exports" class="hidden space-y-4">
+      <div class="flex items-center justify-between">
+        <h2 class="text-xl font-bold text-white">Exported 9:16 Shorts Library</h2>
+        <span class="text-xs text-slate-400">7 files generated</span>
+      </div>
+      <div id="exports-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- Rendered by JS -->
+      </div>
+    </section>
+
+    <!-- 7. SETTINGS -->
+    <section id="screen-settings" class="hidden space-y-6">
+      <div class="bg-forgeSurface border border-forgeBorder rounded-2xl p-6 space-y-5 max-w-2xl">
+        <h2 class="text-xl font-bold text-white">Platform Settings & API Keys</h2>
+        <div class="space-y-2">
+          <label class="block text-xs font-semibold text-slate-300">Gemini Cloud API Key</label>
+          <input type="password" id="gemini-key" placeholder="AIzaSy..." class="w-full bg-forgeBg border border-forgeBorder rounded-xl px-4 py-2.5 text-xs text-white">
+          <p class="text-[11px] text-slate-400">Used for Gemini 3.1 Pro Video Understanding and Gemini 3.5 Flash chat.</p>
+        </div>
+        <div class="space-y-2">
+          <label class="block text-xs font-semibold text-slate-300">YouTube Data API Key (Optional)</label>
+          <input type="password" id="yt-key" placeholder="Optional API Key..." class="w-full bg-forgeBg border border-forgeBorder rounded-xl px-4 py-2.5 text-xs text-white">
+        </div>
+        <button onclick="alert('Settings saved successfully in internal storage!')" class="px-5 py-2.5 bg-amber-400 hover:bg-amber-300 text-slate-900 font-bold text-xs rounded-xl shadow transition">Save Settings</button>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // State
+    const projectsData = [
+      { id: '1', title: 'Neural Agents & Autonomous AI Revolution', author: 'Open Tech Summit', duration: '08:00', clips: 3, thumb: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=500' },
+      { id: '2', title: '10x Developer & Startup Scaling Myths', author: 'Engineering Mastery', duration: '09:00', clips: 4, thumb: 'https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=500' },
+      { id: '3', title: 'Pro Esports Clutch: 1v4 Tactical Breakdown', author: 'Cyber Arena', duration: '05:20', clips: 2, thumb: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=500' },
+    ];
+
+    const exportsData = [
+      { id: 'e1', title: '🔥 Secret AI Hack Nobody Tells You', duration: '30s', size: '14.2 MB', res: '1080x1920' },
+      { id: 'e2', title: '💡 The Exact 10x Developer Technique', duration: '28s', size: '12.8 MB', res: '1080x1920' },
+      { id: 'e3', title: '⚡ Insane 1v4 Clutch Ending', duration: '34s', size: '15.9 MB', res: '1080x1920' }
+    ];
+
+    function renderDashboard() {
+      const container = document.getElementById('projects-list');
+      container.innerHTML = projectsData.map(p => `
+        <div class="bg-forgeSurface border border-forgeBorder hover:border-indigo-500/50 transition rounded-xl p-4 flex items-center space-x-4">
+          <img src="${p.thumb}" class="w-20 h-14 object-cover rounded-lg">
+          <div class="flex-1 min-w-0">
+            <p class="text-sm font-bold text-white truncate">${p.title}</p>
+            <p class="text-xs text-slate-400">${p.author} • ${p.duration}</p>
+            <span class="inline-block mt-1 text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300">${p.clips} Ready Clips</span>
+          </div>
+          <button onclick="switchTab('review')" class="px-3 py-1.5 rounded-lg bg-forgeSurfaceVariant hover:bg-slate-700 text-xs font-semibold text-slate-200">Open</button>
+        </div>
+      `).join('');
+
+      renderExports();
+    }
+
+    function renderExports() {
+      const container = document.getElementById('exports-grid');
+      container.innerHTML = exportsData.map(e => `
+        <div class="bg-forgeSurface border border-forgeBorder rounded-xl p-4 space-y-3">
+          <div class="w-full h-36 bg-black rounded-lg flex items-center justify-center relative overflow-hidden">
+            <span class="text-xs font-black text-amber-300">9:16 MP4 PREVIEW</span>
+            <div class="absolute bottom-2 right-2 bg-black/80 px-2 py-0.5 rounded text-[10px] text-white">${e.duration}</div>
+          </div>
+          <div>
+            <p class="text-sm font-bold text-white truncate">${e.title}</p>
+            <p class="text-xs text-slate-400">${e.res} • ${e.size}</p>
+          </div>
+          <button onclick="alert('Downloading: ${e.title}')" class="w-full py-2 bg-amber-400 hover:bg-amber-300 text-slate-900 rounded-lg text-xs font-bold transition">Download Clip</button>
+        </div>
+      `).join('');
+    }
+
+    function switchTab(tabId) {
+      document.querySelectorAll('main > section').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('bg-indigo-600', 'text-white');
+        btn.classList.add('text-slate-400');
+      });
+
+      const target = document.getElementById(`screen-${tabId}`);
+      if (target) target.classList.remove('hidden');
+
+      const btn = document.getElementById(`btn-${tabId}`);
+      if (btn) {
+        btn.classList.add('bg-indigo-600', 'text-white');
+        btn.classList.remove('text-slate-400');
+      }
+    }
+
+    function selectSampleSource(idx) {
+      [0, 1, 2].forEach(i => {
+        const el = document.getElementById(`source-opt-${i}`);
+        if (i === idx) {
+          el.className = 'cursor-pointer p-3.5 rounded-xl border border-indigo-500 bg-indigo-600/15 space-y-1 transition';
+        } else {
+          el.className = 'cursor-pointer p-3.5 rounded-xl border border-forgeBorder bg-forgeBg space-y-1 transition';
+        }
+      });
+    }
+
+    function fetchYtMeta() {
+      const url = document.getElementById('yt-url-input').value;
+      if (!url) return;
+      document.getElementById('yt-preview-card').classList.remove('hidden');
+      document.getElementById('yt-title').innerText = "Neural Agents & Future of Autonomous Workflows";
+      document.getElementById('yt-author').innerText = "Tech Keynote Summit • 12:45";
+      document.getElementById('yt-thumb').src = "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=500";
+    }
+
+    function startForgeAnalysis() {
+      switchTab('jobs');
+      const logs = document.getElementById('job-logs');
+      logs.innerText += "\n[Job Started] Validating authorized media input...";
+      setTimeout(() => {
+        logs.innerText += "\n[Gemini 3.1 Pro] Analyzing transcript segments for peak retention...";
+        document.getElementById('job-percent').innerText = "60%";
+        document.getElementById('job-bar').style.width = "60%";
+      }, 1000);
+      setTimeout(() => {
+        logs.innerText += "\n[Complete] 3 high-impact clips proposed. Ready for review!";
+        document.getElementById('job-percent').innerText = "100%";
+        document.getElementById('job-bar').style.width = "100%";
+        document.getElementById('job-badge').innerText = "Clips Ready";
+        document.getElementById('job-badge').className = "px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300";
+      }, 2500);
+    }
+
+    function toggleCropMode() {
+      const btn = document.getElementById('btn-toggle-crop');
+      const badge = document.getElementById('preview-crop-mode');
+      if (btn.innerText.includes('Smart')) {
+        btn.innerText = 'Framing: Center 9:16 Crop';
+        badge.innerText = 'Center Crop Fallback';
+        badge.className = 'text-[10px] font-bold px-2 py-0.5 rounded bg-slate-700 text-slate-300';
+      } else {
+        btn.innerText = 'Framing: Smart Face Track';
+        badge.innerText = '● Smart Face Tracking';
+        badge.className = 'text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300';
+      }
+    }
+
+    function queueRender() {
+      switchTab('jobs');
+      const logs = document.getElementById('job-logs');
+      logs.innerText += "\n[FFmpeg Queue] Render job initiated for short...";
+      logs.innerText += "\n[Subtitles] Burning ASS styling (safe overlay margins applied)...";
+      logs.innerText += "\n[Encoding] 1080x1920 MP4 finished! Export added to library.";
+    }
+
+    function aiRewriteHook() {
+      const titles = [
+        "⚡ Stop Making This Video Mistake Right Now!",
+        "🔥 The 10-Second Secret That Changes Everything",
+        "💡 How Creators Explode Retention in 3 Clicks"
+      ];
+      document.getElementById('clip-title-input').value = titles[Math.floor(Math.random() * titles.length)];
+    }
+
+    function sendChat() {
+      const input = document.getElementById('chat-input');
+      const text = input.value.trim();
+      if (!text) return;
+
+      const container = document.getElementById('chat-messages');
+      container.innerHTML += `
+        <div class="flex justify-end">
+          <div class="max-w-md bg-indigo-600 rounded-2xl p-3 text-xs text-white">${text}</div>
+        </div>
+      `;
+      input.value = '';
+
+      setTimeout(() => {
+        container.innerHTML += `
+          <div class="flex justify-start">
+            <div class="max-w-md bg-forgeSurfaceVariant border border-forgeBorder/50 rounded-2xl p-3 text-xs text-slate-200">
+              💡 <strong>Director Tip:</strong> For highest retention on TikTok & Shorts, open with a contrasting question within the first 1.8 seconds, keep sentences under 6 words per subtitle line, and duck background audio by 65% when the speaker talks!
+            </div>
+          </div>
+        `;
+        container.scrollTop = container.scrollHeight;
+      }, 600);
+    }
+
+    function clearChatMessages() {
+      document.getElementById('chat-messages').innerHTML = '';
+    }
+
+    // Init
+    renderDashboard();
+  </script>
+</body>
+</html>

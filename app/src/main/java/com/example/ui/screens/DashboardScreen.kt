@@ -59,6 +59,16 @@ fun DashboardScreen(
                         )
                     }
                     IconButton(
+                        onClick = { viewModel.navigateTo(Screen.InternalWebStudio) },
+                        modifier = Modifier.testTag("action_web_studio")
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Language,
+                            contentDescription = "النسخة الداخلية (Web Studio)",
+                            tint = ForgeTertiary
+                        )
+                    }
+                    IconButton(
                         onClick = { viewModel.navigateTo(Screen.ExportHistory) },
                         modifier = Modifier.testTag("action_exports")
                     ) {
@@ -167,15 +177,28 @@ fun DashboardScreen(
                                 )
                             )
                             Spacer(modifier = Modifier.height(14.dp))
-                            Button(
-                                onClick = { viewModel.navigateTo(Screen.NewProject) },
-                                colors = ButtonDefaults.buttonColors(containerColor = ForgePrimary),
-                                shape = RoundedCornerShape(12.dp),
-                                modifier = Modifier.testTag("hero_create_project_button")
-                            ) {
-                                Icon(Icons.Default.Bolt, contentDescription = null, tint = ForgeOnPrimary)
-                                Spacer(modifier = Modifier.width(6.dp))
-                                Text("Start New Project", fontWeight = FontWeight.Bold, color = ForgeOnPrimary)
+                            Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                                Button(
+                                    onClick = { viewModel.navigateTo(Screen.NewProject) },
+                                    colors = ButtonDefaults.buttonColors(containerColor = ForgePrimary),
+                                    shape = RoundedCornerShape(12.dp),
+                                    modifier = Modifier.testTag("hero_create_project_button")
+                                ) {
+                                    Icon(Icons.Default.Bolt, contentDescription = null, tint = ForgeOnPrimary)
+                                    Spacer(modifier = Modifier.width(6.dp))
+                                    Text("Start New Project", fontWeight = FontWeight.Bold, color = ForgeOnPrimary)
+                                }
+                                OutlinedButton(
+                                    onClick = { viewModel.navigateTo(Screen.InternalWebStudio) },
+                                    colors = ButtonDefaults.outlinedButtonColors(contentColor = ForgeTertiary),
+                                    border = androidx.compose.foundation.BorderStroke(1.dp, ForgeTertiary.copy(alpha = 0.6f)),
+                                    shape = RoundedCornerShape(12.dp),
+                                    modifier = Modifier.testTag("hero_internal_web_studio_button")
+                                ) {
+                                    Icon(Icons.Default.Language, contentDescription = null, tint = ForgeTertiary)
+                                    Spacer(modifier = Modifier.width(6.dp))
+                                    Text("النسخة الداخلية", fontWeight = FontWeight.Bold)
+                                }
                             }
                         }
                     }

@@ -70,6 +70,7 @@ class MainActivity : ComponentActivity() {
                             viewModel = viewModel
                         )
                         is Screen.ExportHistory -> ExportHistoryScreen(viewModel = viewModel)
+                        is Screen.InternalWebStudio -> InternalWebStudioScreen(viewModel = viewModel)
                         is Screen.Settings -> SettingsScreen(viewModel = viewModel)
                     }
                 }

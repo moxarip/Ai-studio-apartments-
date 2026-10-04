@@ -21,6 +21,7 @@ sealed class Screen {
     data class JobStatus(val jobId: String) : Screen()
     data class ChatStudio(val projectId: String) : Screen()
     object ExportHistory : Screen()
+    object InternalWebStudio : Screen()
     object Settings : Screen()
 }
 
