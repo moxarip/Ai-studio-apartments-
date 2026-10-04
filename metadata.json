@@ -1,0 +1,6 @@
+{
+  "name": "ShortsForge AI",
+  "description": "Transform authorized videos into viral vertical short-form clips with Gemini video understanding, smart highlight detection, animated subtitles, and AI narration.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
