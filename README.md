@@ -84,3 +84,27 @@ npm test         # Executes automated Jest test suite
 - `GET /api/jobs/:jobId`: Query real-time job status, stage, progress percentage, and terminal logs.
 - `PATCH /api/clips/:clipId`: Update clip timestamps, suggested title, transcript, or crop mode.
 - `POST /api/clips/:clipId/render`: Queue a 9:16 portrait FFmpeg render job with burned-in subtitles.
+
+---
+
+## 📦 كيفية تنزيل وتثبيت تطبيق الأندرويد (.apk) | How to Download the APK
+
+### 1. التنزيل التلقائي بعد النشر على GitHub (Automatic via GitHub Actions):
+تم إعداد سير عمل آلي كامل في `.github/workflows/build-apk.yml`. بمجرد رفع الكود إلى مستودعك على GitHub:
+1. افتح صفحة المستودع على **GitHub**.
+2. انتقل إلى تبويب **Actions**.
+3. ستجد سير العمل قيد التشغيل: **"Build & Release Android APK"**.
+4. عند اكتماله (علامة ✔️ خضراء)، اضغط على اسم التشغيل وستجد ملف الـ APK تحت قسم **Artifacts** باسم:
+   `ShortsForge-AI-Debug-APK` جاهزاً للتنزيل المباشر بصيغة `.apk`.
+5. في حال قمت بإنشاء **Release** على GitHub، يتم إرفاق ملف الـ `.apk` تلقائياً داخل صفحة الإصدار لتنزيله لأي مستخدم.
+
+### 2. التنزيل المباشر من Google AI Studio:
+- يمكنك تنزيل ملف الـ APK مباشرة من خلال القائمة العلوية/إعدادات AI Studio (Settings Menu) باختيار **Download APK** أو تصدير المشروع كـ ZIP.
+
+### 3. البناء محلياً عبر سطر الأوامر (Local Build):
+```bash
+./gradlew :app:assembleDebug
+```
+الملف الناتج جاهز في المسار:
+`app/build/outputs/apk/debug/app-debug.apk`
+
